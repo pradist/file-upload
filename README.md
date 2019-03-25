@@ -10,7 +10,7 @@
 git clone https://github.com/pradist/file-upload.git
 ```
 
-**2. Run the app using maven**
+**2. Run the app using gradle**
 
 ```bash
 cd file-upload

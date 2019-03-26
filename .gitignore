@@ -1,10 +1,9 @@
 .gradle
 .idea
+.DS_Store
 
 /out
 /build
 /gradle
 /uploads
-
-.DS_Store
-
+/docker/*.jar

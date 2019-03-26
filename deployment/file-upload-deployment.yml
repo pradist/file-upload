@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-upload
+  labels:
+    app: file-upload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-upload
+  template:
+    metadata:
+      labels:
+        app: file-upload
+    spec:
+      containers:
+        - name: file-upload
+          image: pradiske/file-upload-service:1.0.0
+          ports:
+            - containerPort: 8080

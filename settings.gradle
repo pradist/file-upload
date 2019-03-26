@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'file-uploads'
+rootProject.name = 'file-upload-service'

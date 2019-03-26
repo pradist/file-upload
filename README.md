@@ -21,5 +21,5 @@ You may also package the application in the form of a jar and then run the jar f
 
 ```bash
 gradle clean build
-java -jar build/libs/file-uploads.jar
+java -jar build/libs/file-upload-service.jar
 ```

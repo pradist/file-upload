@@ -70,4 +70,9 @@ public class FileController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
+
+    @GetMapping("/healthz")
+    public String healthz() {
+        return "Well";
+    }
 }

@@ -20,14 +20,14 @@ import java.util.stream.Collectors;
 
 @RestController
 public class FileController {
-    private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+    private Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
     private FileStorageService fileStorageService;
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-        logger.info("Begin upload time : " + new java.util.Date());
+
         String fileName = fileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()

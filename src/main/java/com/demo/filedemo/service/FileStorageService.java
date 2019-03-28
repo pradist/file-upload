@@ -1,8 +1,11 @@
 package com.demo.filedemo.service;
 
+import com.demo.filedemo.controller.FileController;
 import com.demo.filedemo.exception.FileStorageException;
 import com.demo.filedemo.exception.MyFileNotFoundException;
 import com.demo.filedemo.property.FileStorageProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -19,6 +22,7 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService {
     private final Path fileStorageLocation;
+    private Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
@@ -33,6 +37,8 @@ public class FileStorageService {
     }
 
     public String storeFile(MultipartFile file) {
+        logger.info("Begin upload time : " + new java.util.Date());
+
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 

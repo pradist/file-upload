@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: file-upload
-          image: pradiske/file-upload-service:1.0.2
+          image: pradiske/file-upload:1.0.2
           ports:
             - containerPort: 8080

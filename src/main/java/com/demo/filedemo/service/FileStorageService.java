@@ -4,6 +4,9 @@ import com.demo.filedemo.controller.FileController;
 import com.demo.filedemo.exception.FileStorageException;
 import com.demo.filedemo.exception.MyFileNotFoundException;
 import com.demo.filedemo.property.FileStorageProperties;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +25,10 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService {
     private final Path fileStorageLocation;
-    private Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
+
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
                 .toAbsolutePath().normalize();
 
@@ -37,7 +40,8 @@ public class FileStorageService {
     }
 
     public String storeFile(MultipartFile file) {
-        logger.info("Begin upload time : " + new java.util.Date());
+        DateTimeFormatter dtfOut = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss");
+        System.out.println(dtfOut.print(new DateTime()));
 
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());

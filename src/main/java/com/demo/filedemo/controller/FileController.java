@@ -2,8 +2,9 @@ package com.demo.filedemo.controller;
 
 import com.demo.filedemo.payload.UploadFileResponse;
 import com.demo.filedemo.service.FileStorageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -20,21 +21,21 @@ import java.util.stream.Collectors;
 
 @RestController
 public class FileController {
-    private Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
     private FileStorageService fileStorageService;
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-
+        DateTimeFormatter dtfOut = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss");
+        System.out.println(dtfOut.print(new DateTime()));
         String fileName = fileStorageService.storeFile(file);
-
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString();
-        logger.info("End upload time : " + new java.util.Date());
+        System.out.println(dtfOut.print(new DateTime()));
+//        System.out.println("fileName : " + fileName + " Begin upload time : " + beginUpload + " End upload time : " + endUpload);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
@@ -57,7 +58,7 @@ public class FileController {
         try {
             contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
         } catch (IOException ex) {
-            logger.info("Could not determine file type.");
+            System.out.println("Could not determine file type.");
         }
 
         // Fallback to the default content type if type could not be determined

@@ -1,16 +1,26 @@
 package com.demo.filedemo.payload;
 
 public class UploadFileResponse {
+    private String status;
     private String fileName;
     private String fileDownloadUri;
     private String fileType;
     private long size;
 
-    public UploadFileResponse(String fileName, String fileDownloadUri, String fileType, long size) {
+    public UploadFileResponse(String status, String fileName, String fileDownloadUri, String fileType, long size) {
+        this.status = status;
         this.fileName = fileName;
         this.fileDownloadUri = fileDownloadUri;
         this.fileType = fileType;
         this.size = size;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFileName() {

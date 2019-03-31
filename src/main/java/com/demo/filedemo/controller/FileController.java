@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 @RestController
 public class FileController {
 
+    private static final String SUCCESS = "S";
+
     @Autowired
     private FileStorageService fileStorageService;
 
@@ -36,7 +38,7 @@ public class FileController {
                 .toUriString();
         System.out.println(dtfOut.print(new DateTime()));
 //        System.out.println("fileName : " + fileName + " Begin upload time : " + beginUpload + " End upload time : " + endUpload);
-        return new UploadFileResponse(fileName, fileDownloadUri,
+        return new UploadFileResponse(SUCCESS, fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
 
